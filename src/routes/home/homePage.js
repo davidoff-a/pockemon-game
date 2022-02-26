@@ -9,7 +9,7 @@ import Bg1 from "../../assets/bg/bg1.jpg";
 import Bg2 from "../../assets/bg/bg2.jpg";
 import Bg3 from "../../assets/bg/bg3.jpg";
 
-const HomePage = ({ onChangePage}) => {
+const HomePage = ({ onChangePage }) => {
   const POKEMONS = [
     {
       abilities: ["keen-eye", "tangled-feet", "big-pecks"],
@@ -127,16 +127,16 @@ const HomePage = ({ onChangePage}) => {
       },
     },
   ];
-  const handleClickButton = (page) => {
-    console.log('####: <HomePage/>',)
-    onChangePage && onChangePage('game');
-}
+  const handleClickButton = () => {
+    console.log("####: <HomePage/>");
+    onChangePage && onChangePage("game");
+  };
   return (
     <>
       <Header
         id='start'
         title='Pokemon Game'
-        onClickButton = {handleClickButton}
+        onClickButton={handleClickButton}
       />
       <Layout id='rules' title='Rules' urlBg={Bg3}>
         <p>

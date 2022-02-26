@@ -4,7 +4,6 @@ import HomePage from "./routes/home/homePage";
 
 import './index.css';
 
-
 const App = () => {
   const [page, setPage] = useState('app');
   const handleChangePage = (page) => {

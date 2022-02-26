@@ -1,6 +1,6 @@
-const GamePage = ({ onClickButton }) => {
-  const handleClick = (page) => {
-    onClickButton && onClickButton('app');
+const GamePage = ({ onChangePage }) => {
+  const handleClick = () => {
+    onChangePage && onChangePage("app");
   };
   return (
     <div>
