@@ -1,10 +1,12 @@
-import './menu.module.css';
+import s from "./menu.module.css";
+import cn from "classnames";
 
-export const Menu = () => {
+const Menu = ({ statusMenu }) => {
+  console.log("#####: status of menu", statusMenu);
   return (
-    <div className='menuContainer active/deactive'>
-      <div className='overlay' />
-      <div className='menuItems'>
+    <div className={cn(s.menuContainer, s[statusMenu])}>
+      <div className={cn(s.overlay)} />
+      <div className={cn(s.menuItems)}>
         <ul>
           <li>
             <a href='#welcome'>HOME</a>
@@ -22,4 +24,6 @@ export const Menu = () => {
       </div>
     </div>
   );
-}
+};
+
+export default Menu;

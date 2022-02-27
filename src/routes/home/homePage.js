@@ -1,9 +1,13 @@
 import "./style.module.css";
 import "./app.css";
 import Header from "../../components/header/header";
+import MenuHeader from "../../components/MenuHeader/MenuHeader";
+import cn from 'classnames';
+
 import Layout from "../../components/layout/layout";
 import Footer from "../../components/footer/index";
-import PokemonCard from "../../components/pokemonCard/pokepomCard";
+import PokemonCard from "../../components/pokemonCard/pokemonCard";
+
 
 import Bg1 from "../../assets/bg/bg1.jpg";
 import Bg2 from "../../assets/bg/bg2.jpg";
@@ -133,6 +137,7 @@ const HomePage = ({ onChangePage }) => {
   };
   return (
     <>
+      <MenuHeader/>
       <Header
         id='start'
         title='Pokemon Game'
