@@ -12,19 +12,6 @@ import s from './style.module.css';
 
 const App = () => {
   const match = useRouteMatch("/");
-  //   const [page, setPage] = useState('app');
-  //   const handleChangePage = (page) => {
-  //     console.log('####: <MainPage/>',)
-  //     setPage(page);
-  // }
-  //   switch (page) {
-  //     case "app":
-  //       return <HomePage onChangePage={handleChangePage}/>
-  //     case "game":
-  //       return <GamePage onChangePage={handleChangePage}/>
-  //     default:
-  //       return <HomePage/>
-  //   }
   return (
     <Switch>
       <Route path='/404' render={() => <h1>404 Page Not Found</h1>} />
@@ -34,6 +21,7 @@ const App = () => {
           <div className={cn(s.wrap, { [s.isHomePage]: match.isExact })}>
             <Switch>
               <Route path='/' exact component={HomePage} />
+              {/* <Route path='/home' exact component={HomePage} /> */}
               <Route path='/game' component={GamePage} />
               <Route path='/about' render={() => <h1>This is page About</h1>} />
               <Route

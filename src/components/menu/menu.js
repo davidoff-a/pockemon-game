@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import s from "./menu.module.css";
 import cn from "classnames";
 const menuItems = [
-  { title: "HOME", to: "#welcome" },
-  { title: "GAME", to: "#game" },
-  { title: "ABOUT", to: "#about" },
-  { title: "CONTACT", to: "#contact" },
+  { title: "HOME", to: "" },
+  { title: "GAME", to: "game" },
+  { title: "ABOUT", to: "about" },
+  { title: "CONTACT", to: "contacts" },
 ];
-const Menu = ({ isOpen }) => {
+const Menu = ({ isOpen, onClickHamburg}) => {
   console.log("#####: status of menu", isOpen);
-
+  // const handleLinkClick = () => {};
   return (
     <div
       className={cn(s.menuContainer, {
@@ -23,7 +23,9 @@ const Menu = ({ isOpen }) => {
         <ul>
           {menuItems.map(({ title, to }, index) => (
             <li key={index}>
-              <Link to={to}>{title}</Link>
+              <Link to={to} onClick={onClickHamburg}>
+                {title}
+              </Link>
             </li>
           ))}
         </ul>

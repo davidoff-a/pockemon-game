@@ -1,11 +1,8 @@
 import "./style.module.css";
 import "./app.css";
 import Header from "../../components/header/header";
-import MenuHeader from "../../components/MenuHeader/MenuHeader";
-import cn from 'classnames';
 
 import Layout from "../../components/layout/layout";
-import Footer from "../../components/footer/index";
 import PokemonCard from "../../components/pokemonCard/pokemonCard";
 
 
@@ -137,7 +134,7 @@ const HomePage = ({ onChangePage }) => {
   };
   return (
     <>
-      <MenuHeader bgActive={false}/>
+      {/* <MenuHeader bgActive={false}/> */}
       <Header
         id='start'
         title='Pokemon Game'
@@ -195,7 +192,7 @@ const HomePage = ({ onChangePage }) => {
           blue
         </p>
       </Layout>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
