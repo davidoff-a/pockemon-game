@@ -1,9 +1,13 @@
-import s from "./header.module.css";
+import { useHistory } from "react-router-dom";
 import cn from "classnames";
 
+import s from "./header.module.css";
+
 const Header = ({ title, descr, onClickButton }) => {
+  const history = useHistory();
   const headerStyle = { color: "red" };
   const handleClick = () => {
+    history.push('/game');
     console.log("####: <Header/>");
     onClickButton && onClickButton();
   };

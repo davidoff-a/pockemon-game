@@ -7,7 +7,7 @@ const GamePage = ({ onChangePage }) => {
   return (
     <>
       <MenuHeader bgActive={true}/>
-      <button style={ {marginTop: "150px"}} onClick={handleClick}>back to Home Page</button>
+      <button onClick={handleClick}>back to Home Page</button>
     </>
   );
 };

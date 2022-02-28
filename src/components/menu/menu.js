@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import s from "./menu.module.css";
 import cn from "classnames";
 const menuItems = [
@@ -21,7 +23,7 @@ const Menu = ({ isOpen }) => {
         <ul>
           {menuItems.map(({ title, to }, index) => (
             <li key={index}>
-              <a href={to}>{title}</a>
+              <Link to={to}>{title}</Link>
             </li>
           ))}
         </ul>
