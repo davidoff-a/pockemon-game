@@ -4,7 +4,12 @@ const GamePage = ({ onChangePage }) => {
   const handleClick = () => {
     onChangePage && onChangePage("app");
   };
-  return <button onClick={handleClick}>back to Home Page</button>;
+  return (
+    <>
+      <MenuHeader bgActive={true}/>
+      <button style={ {marginTop: "150px"}} onClick={handleClick}>back to Home Page</button>
+    </>
+  );
 };
 
 export default GamePage;

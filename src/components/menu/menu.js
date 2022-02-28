@@ -6,20 +6,24 @@ const menuItems = [
   { title: "ABOUT", to: "#about" },
   { title: "CONTACT", to: "#contact" },
 ];
-const Menu = ({ statusMenu }) => {
-  console.log("#####: status of menu", statusMenu);
+const Menu = ({ isOpen }) => {
+  console.log("#####: status of menu", isOpen);
+
   return (
-    <div className={cn(s.menuContainer, s[statusMenu])}>
-      <div className={cn(s.overlay)} />
-      <div className={cn(s.menuItems)}>
+    <div
+      className={cn(s.menuContainer, {
+        [s.active]: isOpen === true,
+        [s.deactive]: isOpen === false,
+      })}
+    >
+      <div className={s.overlay} />
+      <div>
         <ul>
-          {menuItems.map(({title, to}, index) =>
-          (
-            <li key = {index}>
+          {menuItems.map(({ title, to }, index) => (
+            <li key={index}>
               <a href={to}>{title}</a>
             </li>
-          )
-          )}
+          ))}
         </ul>
       </div>
     </div>

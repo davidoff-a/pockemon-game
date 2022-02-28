@@ -137,7 +137,7 @@ const HomePage = ({ onChangePage }) => {
   };
   return (
     <>
-      <MenuHeader/>
+      <MenuHeader bgActive={false}/>
       <Header
         id='start'
         title='Pokemon Game'
