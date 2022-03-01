@@ -3,7 +3,7 @@ import cn from "classnames";
 
 import s from "./header.module.css";
 
-const Header = ({ title, descr, onClickButton }) => {
+const Header = ({ title, children, onClickButton }) => {
   const history = useHistory();
   const headerStyle = { color: "red" };
   const handleClick = () => {
@@ -18,7 +18,7 @@ const Header = ({ title, descr, onClickButton }) => {
       <div className={s.moon}></div>
       <div className={cn(s.container)}>
         <h1 style={headerStyle}>{title}</h1>
-        <p>{descr}</p>
+        {children}
         <button onClick={handleClick}>Start Game</button>
       </div>
     </header>

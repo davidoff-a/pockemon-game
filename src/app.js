@@ -21,7 +21,6 @@ const App = () => {
           <div className={cn(s.wrap, { [s.isHomePage]: match.isExact })}>
             <Switch>
               <Route path='/' exact component={HomePage} />
-              {/* <Route path='/home' exact component={HomePage} /> */}
               <Route path='/game' component={GamePage} />
               <Route path='/about' render={() => <h1>This is page About</h1>} />
               <Route

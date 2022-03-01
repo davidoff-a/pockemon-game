@@ -10,7 +10,6 @@ const menuItems = [
 ];
 const Menu = ({ isOpen, onClickHamburg}) => {
   console.log("#####: status of menu", isOpen);
-  // const handleLinkClick = () => {};
   return (
     <div
       className={cn(s.menuContainer, {

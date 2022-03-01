@@ -139,7 +139,9 @@ const HomePage = ({ onChangePage }) => {
         id='start'
         title='Pokemon Game'
         onClickButton={handleClickButton}
-      />
+      >
+        <p>This is simple triple triad game</p>
+        </Header>
       <Layout id='rules' title='Rules' urlBg={Bg3}>
         <p>
           In the game two players face off against one another, one side playing
@@ -192,7 +194,6 @@ const HomePage = ({ onChangePage }) => {
           blue
         </p>
       </Layout>
-      {/* <Footer /> */}
     </>
   );
 };
