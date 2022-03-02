@@ -121,19 +121,28 @@ const GamePage = () => {
       },
     },
   ];
-  const [pokemons, setPokemons] = useState([...POKEMONS]);
-  
+  const [pokemons, setPokemons] = useState(POKEMONS);
+
   const backHistory = useHistory();
   const handleClick = () => {
-    backHistory.push('/');
+    backHistory.push("/");
   };
-  const handleCardClick = () => this.id;
+  const handleCardClick = (id) => {
+    setPokemons((prevState) => {
+      // prevState.forEach((pokemon) => {
+      //   if (pokemon.id === id) {pokemon.active = !pokemon.active};
+      // });
+      const choosenPokemon = prevState.find((pokemon) => pokemon.id === id);
+      choosenPokemon.active = !choosenPokemon.active;
+      return [...prevState];
+    });
+  };
 
   return (
     <>
       <button onClick={handleClick}>back to Home Page</button>
       <div className='flex'>
-        {POKEMONS.map((pokemon) => (
+        {pokemons.map((pokemon) => (
           <PokemonCard
             key={pokemon.id}
             name={pokemon.name}
@@ -141,12 +150,13 @@ const GamePage = () => {
             id={pokemon.id}
             type={pokemon.type}
             values={pokemon.values}
-            onClick={handleCardClick}
+            onCardClick={handleCardClick}
+            isActive={pokemon.active}
           />
         ))}
       </div>
     </>
   );
 };
-
+/*  */
 export default GamePage;

@@ -8,7 +8,6 @@ const Header = ({ title, children, onClickButton }) => {
   const headerStyle = { color: "red" };
   const handleClick = () => {
     history.push('/game');
-    console.log("####: <Header/>");
     onClickButton && onClickButton();
   };
   return (

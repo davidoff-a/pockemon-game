@@ -1,14 +1,18 @@
 import { useRouteMatch, Route, Switch, Redirect } from "react-router-dom";
-import cn from 'classnames';
+import cn from "classnames";
 
 import GamePage from "./routes/game/gamePage";
 import HomePage from "./routes/home/homePage";
 import MenuHeader from "./components/MenuHeader/MenuHeader";
 import Footer from "./components/footer";
 
-import s from './style.module.css';
+import database from "./services/firebase";
 
+import s from "./style.module.css";
 
+database.ref("pokemons").once("value", (snapshot) => {
+  console.log("####:snapshot", snapshot.val());
+});
 
 const App = () => {
   const match = useRouteMatch("/");
@@ -27,7 +31,7 @@ const App = () => {
                 path='/contacts'
                 render={() => <h1>This is page Contacts</h1>}
               />
-              <Route render={() => <Redirect to='/404'/>} />
+              <Route render={() => <Redirect to='/404' />} />
             </Switch>
           </div>
           <Footer />
