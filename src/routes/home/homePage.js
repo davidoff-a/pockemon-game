@@ -1,10 +1,7 @@
 import "./style.module.css";
-import "./app.css";
+
 import Header from "../../components/header/header";
-
 import Layout from "../../components/layout/layout";
-import PokemonCard from "../../components/pokemonCard/pokemonCard";
-
 
 import Bg1 from "../../assets/bg/bg1.jpg";
 import Bg2 from "../../assets/bg/bg2.jpg";
