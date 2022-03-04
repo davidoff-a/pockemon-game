@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import database from "../../services/firebase";
 
 import PokemonCard from "../../components/pokemonCard/pokemonCard";
+import Layout from "../../components/layout/layout";
 
 import s from "./style.module.css";
 
@@ -16,15 +17,15 @@ const GamePage = () => {
     });
   }, []);
   console.log("####: pokemons =>", Object.entries(pokemons));
-  const backHistory = useHistory();
   const handleClick = () => {
-    backHistory.push("/");
+    const newKey = database.ref().child("pokemons").push().key;
+    database.ref("pokemons/" + newKey).set(JSON.parse(JSON.stringify(Object.entries(pokemons)[0][1])));
   };
-  const handleCardClick = (id) => {
+  const handleCardClick = (key) => {
     setPokemons((prevState) => {
       return Object.entries(prevState).reduce((acc, item) => {
         const pokemonProps = { ...item[1] };
-        if (pokemonProps.id === id) {
+        if (item[0] === key) {
           pokemonProps.active = !pokemonProps.active;
           database.ref("pokemons/" + item[0]).set({ ...pokemonProps });
         }
@@ -35,13 +36,13 @@ const GamePage = () => {
   };
 
   return (
-    <>
-      <button onClick={handleClick}>back to Home Page</button>
+    <Layout id={'game'} title={"Pokemon Game"} >
+      <button onClick={handleClick}>add new pokemon</button>
       <div className={s.flex}>
         {Object.entries(pokemons).map(
           ([key, { name, img, id, type, values, active }]) => (
             <PokemonCard
-              key={key}
+              dataKey={key}
               name={name}
               img={img}
               id={id}
@@ -53,7 +54,7 @@ const GamePage = () => {
           )
         )}
       </div>
-    </>
+    </Layout>
   );
 };
 

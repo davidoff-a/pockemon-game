@@ -4,6 +4,7 @@ import s from "./pokemonCard.module.css";
 import cardBackSide from "../../assets/card/card-back-side.jpg";
 
 const PokemonCard = ({
+  dataKey,
   name,
   img,
   id,
@@ -12,10 +13,12 @@ const PokemonCard = ({
   onCardClick,
   isActive,
 }) => {
-  const handleCardClick = () => onCardClick(id);
+  const handleCardClick = () => onCardClick(dataKey);
   console.log("####: values => ", values);
+  console.log("####: key => ", dataKey);
+  console.log("####: name => ", name);
   return (
-    <div className={s.root} onClick={handleCardClick}>
+    <div className={s.root} onClick={handleCardClick} dataKey={dataKey}>
       <div className={cn(s.pokemonCard, { [s.active]: isActive })}>
         <div className={s.cardFront}>
           <div className={cn(s.wrap, s.front)}>
