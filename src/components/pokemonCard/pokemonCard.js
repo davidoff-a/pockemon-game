@@ -14,9 +14,6 @@ const PokemonCard = ({
   isActive,
 }) => {
   const handleCardClick = () => onCardClick(dataKey);
-  console.log("####: values => ", values);
-  console.log("####: key => ", dataKey);
-  console.log("####: name => ", name);
   return (
     <div className={s.root} onClick={handleCardClick} dataKey={dataKey}>
       <div className={cn(s.pokemonCard, { [s.active]: isActive })}>

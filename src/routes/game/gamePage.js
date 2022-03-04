@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 
 import database from "../../services/firebase";
 
@@ -16,7 +15,6 @@ const GamePage = () => {
       setPokemons(snapshot.val());
     });
   }, []);
-  console.log("####: pokemons =>", Object.entries(pokemons));
   const handleClick = () => {
     const newKey = database.ref().child("pokemons").push().key;
     database.ref("pokemons/" + newKey).set(JSON.parse(JSON.stringify(Object.entries(pokemons)[0][1])));
