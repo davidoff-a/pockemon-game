@@ -16,5 +16,3 @@ export const fire = firebase;
 export const database = fire.database();
 
 export default database;
-
- 

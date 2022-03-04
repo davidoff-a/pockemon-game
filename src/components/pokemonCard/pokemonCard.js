@@ -3,8 +3,17 @@ import cn from "classnames";
 import s from "./pokemonCard.module.css";
 import cardBackSide from "../../assets/card/card-back-side.jpg";
 
-const PokemonCard = ({ name, img, id, type, values, onCardClick, isActive }) => {
+const PokemonCard = ({
+  name,
+  img,
+  id,
+  type,
+  values,
+  onCardClick,
+  isActive,
+}) => {
   const handleCardClick = () => onCardClick(id);
+  console.log("####: values => ", values);
   return (
     <div className={s.root} onClick={handleCardClick}>
       <div className={cn(s.pokemonCard, { [s.active]: isActive })}>
@@ -20,12 +29,13 @@ const PokemonCard = ({ name, img, id, type, values, onCardClick, isActive }) => 
               <div className={s.imgContainer}>
                 <img src={img} alt={name} />
               </div>
-              <div className={s.info}></div>
-              <span className={s.number}>#{id}</span>
-              <h3 className={s.name}>{name}</h3>
-              <small className={s.type}>
-                Type: <span>{type}</span>
-              </small>
+              <div className={s.info}>
+                <span className={s.number}>#{id}</span>
+                <h3 className={s.name}>{name}</h3>
+                <small className={s.type}>
+                  Type: <span>{type}</span>
+                </small>
+              </div>
             </div>
           </div>
         </div>
