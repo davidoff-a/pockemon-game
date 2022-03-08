@@ -12,7 +12,18 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-export const fire = firebase;
-export const database = fire.database();
 
-export default database;
+class Firebase {
+  constructor() {
+    firebase.initializeApp(firebaseConfig);
+
+    this.fire = firebase;
+    this.database = this.fire.database();
+  }
+
+  getPokemonsOnce = async () => {
+    return await this.database.ref('pokemons').once('value').then(snapshot => snapshot.val());
+  }
+}
+
+export default Firebase;
