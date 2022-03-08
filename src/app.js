@@ -9,6 +9,10 @@ import Footer from "./components/footer";
 import AboutPage from "./routes/about/AboutPage";
 import { TestContext } from "./context/testContext";
 import s from "./style.module.css";
+import s from "./style.module.css";
+database.ref("pokemons").once("value", (snapshot) => {
+  console.log("####:snapshot", snapshot.val());
+});
 
 const App = () => {
   const [theme, setTheme] = useState('light');

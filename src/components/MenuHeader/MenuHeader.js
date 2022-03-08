@@ -4,8 +4,7 @@ import Menu from "../menu/menu";
 
 const MenuHeader = ({ bgActive }) => {
   const [isOpen, setOpen] = useState(null);
-  const handleClickHamburger = (isOpen) => {
-    console.log("#####: menu button has been clicked and status is", isOpen);
+  const handleClickHamburger = () => {
     setOpen((prevState) => !prevState);
   };
   return (

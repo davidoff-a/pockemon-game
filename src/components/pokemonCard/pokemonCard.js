@@ -1,16 +1,21 @@
-import { useState } from "react";
 import cn from "classnames";
 
 import s from "./pokemonCard.module.css";
 import cardBackSide from "../../assets/card/card-back-side.jpg";
 
-const PokemonCard = ({ name, img, id, type, values }) => {
-  const [isActive, setActive] = useState(false);
-  const handleClick = () => {
-    isActive ? setActive(false) : setActive(true);
-  };
+const PokemonCard = ({
+  dataKey,
+  name,
+  img,
+  id,
+  type,
+  values,
+  onCardClick,
+  isActive,
+}) => {
+  const handleCardClick = () => onCardClick(dataKey);
   return (
-    <div className={s.root} onClick={handleClick}>
+    <div className={s.root} onClick={handleCardClick} dataKey={dataKey}>
       <div className={cn(s.pokemonCard, { [s.active]: isActive })}>
         <div className={s.cardFront}>
           <div className={cn(s.wrap, s.front)}>
@@ -24,12 +29,13 @@ const PokemonCard = ({ name, img, id, type, values }) => {
               <div className={s.imgContainer}>
                 <img src={img} alt={name} />
               </div>
-              <div className={s.info}></div>
-              <span className={s.number}>#{id}</span>
-              <h3 className={s.name}>{name}</h3>
-              <small className={s.type}>
-                Type: <span>{type}</span>
-              </small>
+              <div className={s.info}>
+                <span className={s.number}>#{id}</span>
+                <h3 className={s.name}>{name}</h3>
+                <small className={s.type}>
+                  Type: <span>{type}</span>
+                </small>
+              </div>
             </div>
           </div>
         </div>
