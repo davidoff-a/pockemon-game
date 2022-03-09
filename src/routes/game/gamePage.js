@@ -22,7 +22,7 @@ const GamePage = () => {
 
   const handleAddPokemon = () => {
     const newKey = database.ref().child("pokemons").push().key;
-    database.ref("pokemons/" + newKey).set(JSON.parse(JSON.stringify(Object.entries(pokemons)[0][1])));
+    database.ref("pokemons/" + newKey).set(JSON.parse(JSON.stringify(Object.entries(pokemons)[0][1]))).then(()=>getPokemons());
   };
   const handleCardClick = (key) => {
     setPokemons((prevState) => {
@@ -39,7 +39,7 @@ const GamePage = () => {
   };
 
   return (
-    <Layout id={'game'} title={"Pokemon Game"} >
+    <Layout id={"game"} title={"Pokemon Game"}>
       <button onClick={handleAddPokemon}>add new pokemon</button>
       <div className={s.flex}>
         {Object.entries(pokemons).map(
