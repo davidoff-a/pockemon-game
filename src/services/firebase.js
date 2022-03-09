@@ -21,22 +21,30 @@ class Firebase {
     return await this.database
       .ref("pokemons")
       .once("value")
-      .then((snapshot) => snapshot.val()
-      );
+      .then((snapshot) => snapshot.val());
   };
 
   getPokemonSoket = (cb) => {
-    this.database.ref('pokemons').on('value', (snapshot) =>{cb(snapshot.val())})
-  }
+    this.database.ref("pokemons").on("value", (snapshot) => {
+      cb(snapshot.val());
+    });
+  };
+
+  offPokemonSoket = () => {
+    this.database.ref("pokemons").off();
+  };
 
   postPokemon = (key, pokemon) => {
     this.database.ref("pokemons/" + key).set(pokemon);
-  }
+  };
 
   addPokemon = (pokemon, cb) => {
     const newKey = this.database.ref().child("pokemons").push().key;
-    this.database.ref("pokemons/" + newKey).set(pokemon).then(()=>cb());
-  }
+    this.database
+      .ref("pokemons/" + newKey)
+      .set(pokemon)
+      .then(() => cb());
+  };
 }
 
 export default Firebase;

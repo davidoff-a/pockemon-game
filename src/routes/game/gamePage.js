@@ -37,15 +37,11 @@ const GamePage = () => {
   console.log("#### firebase =>", firebase);
   const [pokemons, setPokemons] = useState({});
 
-  // const getPokemons = async () => {
-  //   const response = await firebase.getPokemonsOnce();
-    
-  // };
-
   useEffect(() => {
     firebase.getPokemonSoket((pokemons) => {
       setPokemons(pokemons);
     });
+    return () => firebase.offPokemonSoket();
   }, []);
 
   const handleAddPokemon = () => {
