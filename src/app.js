@@ -8,7 +8,10 @@ import HomePage from "./routes/home/homePage";
 import MenuHeader from "./components/MenuHeader/MenuHeader";
 import Footer from "./components/footer";
 import AboutPage from "./routes/about/AboutPage";
-import { TestContext } from "./context/testContext";
+
+import { FireBaseContext } from "./context/firebaseContext";
+import Firebase from "./services/firebase";
+
 import s from "./style.module.css";
 database.ref("pokemons").once("value", (snapshot) => {
   console.log("####:snapshot", snapshot.val());
@@ -22,7 +25,7 @@ const App = () => {
   const match = useRouteMatch("/");
 
   return (
-    <TestContext.Provider value={{ theme, onChangeTheme: handleChangeTheme }}>
+    <FireBaseContext.Provider value={new Firebase()}>
       <Switch>
         <Route path='/404' render={() => <h1>404 Page Not Found</h1>} />
         <Route>
@@ -44,7 +47,7 @@ const App = () => {
           </>
         </Route>
       </Switch>
-    </TestContext.Provider>
+    </FireBaseContext.Provider>
   );
 };
 
