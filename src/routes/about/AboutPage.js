@@ -1,13 +1,13 @@
-import { useContext } from "react";
-import { TestContext } from "../../context/testContext";
+// import { useContext } from "react";
+// import { TestContext } from "../../context/testContext";
 
 const AboutPage = () => {
-  const themeContext = useContext(TestContext);
-  console.log("####: themeContext", themeContext);
+  // const themeContext = useContext(TestContext);
+  // console.log("####: themeContext", themeContext);
   const handleClick = () => {
-    themeContext.onChangeTheme(
-      themeContext.theme === "light" ? "dark" : "light"
-    );
+    // themeContext.onChangeTheme(
+    //   themeContext.theme === "light" ? "dark" : "light"
+    // );
   };
   return (
     <div>
