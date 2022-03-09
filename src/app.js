@@ -4,7 +4,7 @@ import cn from "classnames";
 
 import { fireBaseContext } from "./context/firebaseContext";
 import Firebase from "./services/firebase";
-import GamePage from "./routes/game/gamePage";
+import StartPage from "./routes/game/routes/Start";
 import HomePage from "./routes/home/homePage";
 import MenuHeader from "./components/MenuHeader/MenuHeader";
 import Footer from "./components/footer";
@@ -31,7 +31,7 @@ const App = () => {
             <div className={cn(s.wrap, { [s.isHomePage]: match.isExact })}>
               <Switch>
                 <Route path='/' exact component={HomePage} />
-                <Route path='/game' component={GamePage} />
+                <Route path='/game' component={StartPage} />
                 <Route path='/about' component={AboutPage} />
                 <Route
                   path='/contacts'
