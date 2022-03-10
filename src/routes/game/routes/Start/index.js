@@ -22,7 +22,7 @@ const StartPage = () => {
       ...prevState,
       [key]: {
         ...prevState[key],
-        selected: !prevState[key.selected],
+        selected: !prevState[key].selected,
       },
     }));
   };
