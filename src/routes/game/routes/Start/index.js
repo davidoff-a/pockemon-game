@@ -8,6 +8,8 @@ import s from "./style.module.css";
 
 const StartPage = () => {
   const firebase = useContext(fireBaseContext);
+  const pokemonContext = useContext(PokemonContext);
+  console.log("####: PokemonContext =>", pokemonContext);
   const [pokemons, setPokemons] = useState({});
 
   useEffect(() => {

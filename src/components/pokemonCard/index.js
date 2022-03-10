@@ -1,7 +1,6 @@
 import cn from "classnames";
 
 import s from "./style.module.css";
-import cardBackSide from "./assets/card-back-side.jpg";
 
 const PokemonCard = ({
   dataKey,
