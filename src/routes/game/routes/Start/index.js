@@ -3,9 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { fireBaseContext } from "../../../../context/firebaseContext";
 import { PokemonContext } from "../../../../context/PokemonContext";
 
-import PokemonCard from "../../../../components/pokemonCard/pokemonCard";
-import Layout from "../../../../components/layout/layout";
-
+import PokemonCard from "../../../../components/pokemonCard";
 import s from "./style.module.css";
 
 const StartPage = () => {
@@ -31,28 +29,31 @@ const StartPage = () => {
 
   return (
     // <PokemonContext.Provider>
+    <>
       <div className={s.buttonWrap}>
         <button>start game</button>
-        <div className={s.flex}>
-          {Object.entries(pokemons).map(
-            ([key, { name, img, id, type, values, selected }]) => (
-              <PokemonCard
-                className={s.card}
-                key={key}
-                dataKey={key}
-                name={name}
-                img={img}
-                id={id}
-                type={type}
-                values={values}
-                onClickCard={() => handleChangeSelected(key)}
-                isActive={true}
-                isSelected={selected}
-              />
-            )
-          )}
-        </div>
       </div>
+
+      <div className={s.flex}>
+        {Object.entries(pokemons).map(
+          ([key, { name, img, id, type, values, selected }]) => (
+            <PokemonCard
+              className={s.card}
+              key={key}
+              dataKey={key}
+              name={name}
+              img={img}
+              id={id}
+              type={type}
+              values={values}
+              onClickCard={() => handleChangeSelected(key)}
+              isActive={true}
+              isSelected={selected}
+            />
+          )
+        )}
+      </div>
+    </>
     // </PokemonContext.Provider>
   );
 };

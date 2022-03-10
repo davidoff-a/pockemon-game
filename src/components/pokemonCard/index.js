@@ -1,7 +1,7 @@
 import cn from "classnames";
 
-import s from "./pokemonCard.module.css";
-import cardBackSide from "../../assets/card/card-back-side.jpg";
+import s from "./style.module.css";
+import cardBackSide from "./assets/card-back-side.jpg";
 
 const PokemonCard = ({
   dataKey,
@@ -10,15 +10,21 @@ const PokemonCard = ({
   id,
   type,
   values,
-  onCardClick,
+  onClickCard,
   minimize,
-  className, 
-  isActive, 
-  isSelected
+  className,
+  isActive,
+  isSelected,
 }) => {
-  const handleCardClick = () => onCardClick&&onCardClick(dataKey);
+  const handleCardClick = () => onClickCard && onClickCard(dataKey);
   return (
-    <div className={cn(className, s.pokemonCard, { [s.active]: isActive, [s.selected]:isSelected })}>
+    <div
+      className={cn(className, s.pokemonCard, {
+        [s.active]: isActive,
+        [s.selected]: isSelected,
+      })}
+      onClick={handleCardClick}
+    >
       <div className={s.cardFront}>
         <div className={cn(s.wrap, s.front)}>
           <div className={cn(s.pokemon, s[type])}>
