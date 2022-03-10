@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 
+import { useHistory } from "react-router-dom";
 import { fireBaseContext } from "../../../../context/firebaseContext";
 import { PokemonContext } from "../../../../context/PokemonContext";
 
@@ -8,7 +9,10 @@ import s from "./style.module.css";
 
 const StartPage = () => {
   const firebase = useContext(fireBaseContext);
+  const pokemonContext = useContext(PokemonContext);
+  const history = useHistory();
   const [pokemons, setPokemons] = useState({});
+  console.log("####: pokemonContext =>", pokemonContext);
 
   useEffect(() => {
     firebase.getPokemonSoket((pokemons) => {
@@ -18,6 +22,8 @@ const StartPage = () => {
   }, []);
 
   const handleChangeSelected = (key) => {
+    const pokemon = { ...pokemons[key] };
+    pokemonContext.onSelectedPokemons(key, pokemon);
     setPokemons((prevState) => ({
       ...prevState,
       [key]: {
@@ -26,12 +32,18 @@ const StartPage = () => {
       },
     }));
   };
-
+  const handleStartGameClick = () => {
+    history.push("/game/board");
+  };
   return (
-    // <PokemonContext.Provider>
     <>
       <div className={s.buttonWrap}>
-        <button>start game</button>
+        <button
+          onClick={handleStartGameClick}
+          disabled={Object.keys(pokemonContext.pokemon).length < 5}
+        > 
+          start game
+        </button>
       </div>
 
       <div className={s.flex}>
@@ -46,7 +58,14 @@ const StartPage = () => {
               id={id}
               type={type}
               values={values}
-              onClickCard={() => handleChangeSelected(key)}
+              onClickCard={() => {
+                if (
+                  Object.keys(pokemonContext.pokemon).length < 5 ||
+                  selected
+                ) {
+                  handleChangeSelected(key);
+                }
+              }}
               isActive={true}
               isSelected={selected}
             />
@@ -54,7 +73,6 @@ const StartPage = () => {
         )}
       </div>
     </>
-    // </PokemonContext.Provider>
   );
 };
 

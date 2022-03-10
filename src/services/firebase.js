@@ -17,12 +17,6 @@ class Firebase {
     this.fire = firebase;
     this.database = this.fire.database();
   }
-  getPokemonsOnce = async () => {
-    return await this.database
-      .ref("pokemons")
-      .once("value")
-      .then((snapshot) => snapshot.val());
-  };
 
   getPokemonSoket = (cb) => {
     this.database.ref("pokemons").on("value", (snapshot) => {

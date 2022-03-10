@@ -231,3 +231,8 @@
   transform: translate(-50%, 0);
   bottom: 0;
 }
+
+.pokemonCard:active .wrap.front::after,
+.pokemonCard:focus .wrap.front::after{
+  border-color: var(--rock);
+}
