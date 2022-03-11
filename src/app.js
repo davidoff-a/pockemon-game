@@ -9,8 +9,6 @@ import MenuHeader from "./components/MenuHeader/MenuHeader";
 import Footer from "./components/footer";
 import AboutPage from "./routes/about/AboutPage";
 
-import { FireBaseContext } from "./context/firebaseContext";
-
 import s from "./style.module.css";
 
 const App = () => {
