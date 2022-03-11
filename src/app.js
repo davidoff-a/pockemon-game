@@ -1,9 +1,9 @@
-import { useRouteMatch, Route, Switch, Redirect } from "react-router-dom";
+import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 import cn from "classnames";
-import { useState } from "react";
 
-import database from "./services/firebase";
-import GamePage from "./routes/game/gamePage";
+import { fireBaseContext } from "./context/firebaseContext";
+import Firebase from "./services/firebase";
+import GamePage from "./routes/game/index";
 import HomePage from "./routes/home/homePage";
 import MenuHeader from "./components/MenuHeader/MenuHeader";
 import Footer from "./components/footer";
@@ -13,25 +13,20 @@ import { FireBaseContext } from "./context/firebaseContext";
 import Firebase from "./services/firebase";
 
 import s from "./style.module.css";
-database.ref("pokemons").once("value", (snapshot) => {
-  console.log("####:snapshot", snapshot.val());
-});
 
 const App = () => {
-  const [theme, setTheme] = useState('light');
-  const handleChangeTheme = (val) => {
-    setTheme(val);
-  }
-  const match = useRouteMatch("/");
+
+  const location = useLocation();
+  const isPadding = location.pathname === '/' || location.pathname === '/game/board';
 
   return (
-    <FireBaseContext.Provider value={new Firebase()}>
+    <fireBaseContext.Provider value={new Firebase()}>
       <Switch>
         <Route path='/404' render={() => <h1>404 Page Not Found</h1>} />
         <Route>
           <>
-            <MenuHeader bgActive={!match.isExact} />
-            <div className={cn(s.wrap, { [s.isHomePage]: match.isExact })}>
+            <MenuHeader bgActive={!isPadding} />
+            <div className={cn(s.wrap, { [s.isHomePage]: isPadding })}>
               <Switch>
                 <Route path='/' exact component={HomePage} />
                 <Route path='/game' component={GamePage} />
@@ -47,7 +42,7 @@ const App = () => {
           </>
         </Route>
       </Switch>
-    </FireBaseContext.Provider>
+    </fireBaseContext.Provider>
   );
 };
 
