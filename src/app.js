@@ -10,7 +10,6 @@ import Footer from "./components/footer";
 import AboutPage from "./routes/about/AboutPage";
 
 import { FireBaseContext } from "./context/firebaseContext";
-import Firebase from "./services/firebase";
 
 import s from "./style.module.css";
 
