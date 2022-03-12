@@ -33,6 +33,7 @@ const BoardPage = () => {
   const [player2, setPlayer2] = useState([]);
   const [choosenCard, setChoosenCard] = useState(null);
   const [steps, setSteps] = useState(0);
+  const [endGame, setEndGame] = useState(false);
 
   const history = useHistory();
   console.log("####: player2", player2);
@@ -62,8 +63,8 @@ const BoardPage = () => {
   }, []);
 
   const handleClickBoardPlate = async (position) => {
-    console.log("####: position", position);
-    console.log("####: choosenCard", choosenCard);
+    // console.log("####: position", position);
+    // console.log("####: choosenCard", choosenCard);
     if (choosenCard) {
       const params = { position, card: choosenCard, board };
 
@@ -109,8 +110,14 @@ const BoardPage = () => {
       } else {
         alert("DRAW!");
       }
+      setEndGame(true);
     }
   }, [steps]);
+
+  if (endGame) {
+    history.replace("/game/finish");
+  }
+
   return (
     <div className={s.root}>
       <div className={s.playerOne}>
