@@ -33,7 +33,6 @@ const BoardPage = () => {
   const [player2, setPlayer2] = useState([]);
   const [choosenCard, setChoosenCard] = useState(null);
   const [steps, setSteps] = useState(0);
-  const [endGame, setEndGame] = useState(false);
 
   const history = useHistory();
   console.log("####: player2", player2);
@@ -102,6 +101,7 @@ const BoardPage = () => {
 
   useEffect(() => {
     if (steps === 9) {
+      history.replace("/game/finish");
       const [count1, count2] = counterWin(board, player1, player2);
       if (count1 > count2) {
         alert("WIN!");
@@ -110,13 +110,8 @@ const BoardPage = () => {
       } else {
         alert("DRAW!");
       }
-      setEndGame(true);
     }
   }, [steps]);
-
-  if (endGame) {
-    history.replace("/game/finish");
-  }
 
   return (
     <div className={s.root}>
