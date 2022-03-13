@@ -9,10 +9,10 @@ import s from "./style.module.css";
 
 const StartPage = () => {
   const firebase = useContext(fireBaseContext);
-  const pokemonContext = useContext(PokemonContext);
+  const { pokemon, onFinishRound, onSelectedPokemons } =
+    useContext(PokemonContext);
   const history = useHistory();
   const [pokemons, setPokemons] = useState({});
-  console.log("####: pokemonContext =>", pokemonContext);
 
   useEffect(() => {
     firebase.getPokemonSoket((pokemons) => {
@@ -23,7 +23,7 @@ const StartPage = () => {
 
   const handleChangeSelected = (key) => {
     const pokemon = { ...pokemons[key] };
-    pokemonContext.onSelectedPokemons(key, pokemon);
+    onSelectedPokemons(key, pokemon);
     setPokemons((prevState) => ({
       ...prevState,
       [key]: {
@@ -33,6 +33,14 @@ const StartPage = () => {
     }));
   };
   const handleStartGameClick = () => {
+    const cardsPlayer1 = (cards) => {
+      console.log(
+        "####: final player1 cards =>",
+        Object.entries(cards).map((item) => item[1])
+      );
+      onFinishRound('player1', (Object.entries(cards).map((item) => item[1])));
+    };
+    cardsPlayer1(pokemon);
     history.push("/game/board");
   };
   return (
@@ -40,8 +48,8 @@ const StartPage = () => {
       <div className={s.buttonWrap}>
         <button
           onClick={handleStartGameClick}
-          disabled={Object.keys(pokemonContext.pokemon).length < 5}
-        > 
+          disabled={Object.keys(pokemon).length < 5}
+        >
           start game
         </button>
       </div>
@@ -59,10 +67,7 @@ const StartPage = () => {
               type={type}
               values={values}
               onClickCard={() => {
-                if (
-                  Object.keys(pokemonContext.pokemon).length < 5 ||
-                  selected
-                ) {
+                if (Object.keys(pokemon).length < 5 || selected) {
                   handleChangeSelected(key);
                 }
               }}

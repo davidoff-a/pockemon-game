@@ -7,9 +7,10 @@ import { PokemonContext } from "../../context/PokemonContext";
 
 const GamePage = () => {
   const [selectedPokemons, setSelectedPokemons] = useState({});
+  const [finalCards, setFinalCards] = useState({});
   const match = useRouteMatch();
   const handleSelectedPokemons = (key, pokemon) => {
-    setSelectedPokemons(prevState => {
+    setSelectedPokemons((prevState) => {
       if (prevState[key]) {
         const copyState = { ...prevState };
         delete copyState[key];
@@ -17,15 +18,26 @@ const GamePage = () => {
       }
       return {
         ...prevState,
-        [key]:pokemon,
-      }
-    })
-  }
+        [key]: pokemon,
+      };
+    });
+  };
+  const handlePlayerCards = (playerName, playerCards) => {
+    setFinalCards((prevState) => {
+      return {
+        ...prevState,
+        [playerName]: {...playerCards},
+      };
+    });
+  };
+  console.log("####: final Cards =>", finalCards)
   return (
     <PokemonContext.Provider
       value={{
         pokemon: selectedPokemons,
         onSelectedPokemons: handleSelectedPokemons,
+        onFinishRound: handlePlayerCards,
+        cardsForFinal: finalCards,
       }}
     >
       <Switch>

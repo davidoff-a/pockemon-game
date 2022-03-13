@@ -22,7 +22,7 @@ const counterWin = (board, player1, player2) => {
 };
 
 const BoardPage = () => {
-  const { pokemon } = useContext(PokemonContext);
+  const { pokemon, onFinishRound } = useContext(PokemonContext);
   const [board, setBoard] = useState([]);
   const [player1, setPlayer1] = useState(() => {
     return Object.values(pokemon).map((item) => ({
@@ -51,6 +51,7 @@ const BoardPage = () => {
         "https://reactmarathon-api.netlify.app/api/create-player"
       );
       const player2Response = await player2Request.json();
+      onFinishRound('player2', player2Response.data);
       setPlayer2(() => {
         return player2Response.data.map((item) => ({
           ...item,
@@ -62,8 +63,6 @@ const BoardPage = () => {
   }, []);
 
   const handleClickBoardPlate = async (position) => {
-    // console.log("####: position", position);
-    // console.log("####: choosenCard", choosenCard);
     if (choosenCard) {
       const params = { position, card: choosenCard, board };
 
